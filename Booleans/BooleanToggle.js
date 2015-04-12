@@ -31,14 +31,3 @@ x3dom.registerNodeType(
 
 )//defineClass
 );//registerNodeType
-
-function active(){
-    $("#Trigger").attr("enable", true);
-    $("#Trigger").attr("loop", true);
-}
-
-function deactive(){
-    $("#Trigger2").attr("enable", true);
-    $("#Trigger2").attr("loop", true);
-     
-}

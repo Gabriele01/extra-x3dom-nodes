@@ -35,8 +35,4 @@ x3dom.registerNodeType(
         } 
     )
 );
-// REMOVE , only for testing 
-function active(){
-  $("#Trigger").attr("enable", true);
-  $("#Trigger").attr("loop", true); 
-}
+
