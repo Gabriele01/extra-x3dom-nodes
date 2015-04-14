@@ -2,10 +2,10 @@
 
 x3dom.registerNodeType(
         "BooleanTrigger", 
-        "Core",
-        defineClass(x3dom.nodeTypes.X3DNode, 
+        "Triggers",
+        defineClass(x3dom.nodeTypes.X3DTriggerNode,
             /**
-             *BooleanToggle Constructor 
+             *BooleanTrigger Constructor 
              **/
 
             function(ctx){
