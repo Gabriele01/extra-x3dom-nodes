@@ -88,21 +88,44 @@ def importScene(inputDoc, output):
     return output     
 
 def addDelaySensor(output, script) :
-    delay = output.createElement("DelaySensor")
-    delay.setAttribute("DEF", script.getAttribute("DEF"))
     for node in script.parentNode.childNodes : 
         if node.nodeName == 'TimeSensor':
-            delayTime = node.getAttribute("cycleInterval")
-            delay.setAttribute("delay",delayTime )
+            delayTime = float(node.getAttribute("cycleInterval"))
+            loop = node.getAttribute("loop")
             node.parentNode.removeChild(node)
-        # if node.nodeName == 'ROUTE': 
-        #     if node.getAttribute("fromField") == '"delayCompleteTime"' : 
-        #         node.setAttribute("fromField", "isActive") 
-        #         node.setAttribute("toField", "isActive")
-    # script.parentNode.replaceChild(script, delay)  
-    script.parentNode.appendChild(delay)
-    delay.parentNode.removeChild(script)
+            
+        if node.nodeName == 'ROUTE': 
+            if node.getAttribute("fromField") == "delayCompleteTime": 
+                timeSensor = node.getAttribute("toNode")
+    parent = script.parentNode 
+    parent.parentNode.removeChild(parent) 
+    script.parentNode.removeChild(script) 
+    output = addDelayScript(output, delayTime,loop,  timeSensor)  
+    return output 
+
+def addDelayScript(output, delayTime, loop, timeSensor): 
+    delayScript = output.createElement("script")
+    for node in output.getElementsByTagName("TimeSensor") : 
+        if node.getAttribute("DEF") == timeSensor : 
+            clock = node  
+    name = clock.getAttribute("DEF")
+    clock.setAttribute("id", name)
+    script = output.createTextNode(scriptText(name, delayTime, loop))
+    delayScript.appendChild(script); 
+    body = output.getElementsByTagName("body")[0] 
+    body.appendChild(delayScript)
     return output
+
+def scriptText(name, delayTime, loop) : 
+    string =("\n\t\t(function() {{\n"
+             "\t\t\tstartTime = new Date().getTime() /1000 + {0} ;\n"
+             "\t\t\tdocument.getElementById(\"{1}\").setAttribute( \"startTime\", startTime);\n"
+             "\t\t\tdocument.getElementById(\"{1}\").setAttribute( \"loop\", \"{2}\");\n"
+             "\t\t}})();".format(delayTime, name, loop))
+
+    return string 
+
+
 
 def checkScripts(output) : 
     if (output.getElementsByTagName("Script") != None ) : 
@@ -121,7 +144,7 @@ output = importScene(doc, output)
 
 outputFile = os.path.splitext(inputFile)[0] + ".xhtml"
 out_file = open(outputFile, "w") 
-out_file.write(output.toprettyxml(indent="    ", encoding="utf-8"))
+out_file.write(output.toprettyxml())
 out_file.close()
 
 
