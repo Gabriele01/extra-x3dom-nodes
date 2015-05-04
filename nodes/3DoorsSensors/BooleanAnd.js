@@ -11,7 +11,7 @@ x3dom.registerNodeType(
        */
     function (ctx) {
          x3dom.nodeTypes.BooleanAnd.superClass.call(this, ctx);
-         this.addField_SFBool('fistValue', false);
+         this.addField_SFBool('firstValue', false);
          this.addField_SFBool('secondValue', false);
          this.addField_SFBool('outputTrue', false);
          this.addField_SFBool('outputFalse', true);
