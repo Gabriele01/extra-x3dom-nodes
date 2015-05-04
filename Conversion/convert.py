@@ -43,7 +43,7 @@ def createHead(output) :
     script.setAttribute("type", "text/javascript")
     head.appendChild(script)
     script = output.createElement("script")
-    script.setAttribute("src", "extra-x3dom-nodes.js")
+    script.setAttribute("src", "/Users/Ghost/Documents/SynArea/extra-x3dom-nodes/extra-x3dom-nodes.js")
     script.setAttribute("type", "text/javascript")
     head.appendChild(script)
     
