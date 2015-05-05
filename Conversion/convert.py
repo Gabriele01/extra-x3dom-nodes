@@ -43,7 +43,7 @@ def createHead(output) :
     script.setAttribute("type", "text/javascript")
     head.appendChild(script)
     script = output.createElement("script")
-    script.setAttribute("src", "/Users/Ghost/Documents/SynArea/extra-x3dom-nodes/extra-x3dom-nodes.js")
+    script.setAttribute("src", "/Users/Ghost/Documents/SynArea/extra-x3dom-nodes/nodes/extra-x3dom-nodes.js")
     script.setAttribute("type", "text/javascript")
     head.appendChild(script)
     
@@ -134,9 +134,8 @@ def scriptText(name, delayTime, loop) :
 def checkScripts(output) : 
     if (output.getElementsByTagName("Script") != None ) : 
         for script in output.getElementsByTagName("Script") : 
-            print script.toxml()
-            if script.getAttribute("url") == "DelaySensor.js": 
-                print script.toxml()
+            if script.getAttribute("url") == '"DelaySensor.js"': 
+                print script.toprettyxml()
                 output= addDelaySensor(output, script)
     return output
 
