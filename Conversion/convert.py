@@ -79,8 +79,8 @@ def createX3D(output) :
     X3D.setAttribute("showLog", "false")
     X3D.setAttribute("x", "0px")
     X3D.setAttribute("y", "0px")
-    X3D.setAttribute("width", "400px")
-    X3D.setAttribute("height", "400px")
+    X3D.setAttribute("width", "1000px")
+    X3D.setAttribute("height", "1000px")
     body.appendChild(X3D) 
 
 # importing the x3d scene from the input file in x3d  

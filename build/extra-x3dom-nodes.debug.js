@@ -13,8 +13,8 @@ x3dom.registerNodeType(
          x3dom.nodeTypes.BooleanAnd.superClass.call(this, ctx);
          this.addField_SFBool('firstValue', false);
          this.addField_SFBool('secondValue', false);
-         this.addField_SFBool('outputTrue', false);
-         this.addField_SFBool('outputFalse', true);
+         this.addField_SFBool('inputTrue', false);
+         this.addField_SFBool('inputFalse', true);
 
 
     }, 
@@ -22,16 +22,16 @@ x3dom.registerNodeType(
         fieldChanged : function(fieldName){
             if (fieldName === "firstValue" || fieldName === "secondValue" ){
                  if (this._vf.firstValue == true && this._vf.secondValue == true){
-                      this._vf.outputTrue = true ; 
-                      this._vf.outputFalse= false ; 
-                      this.postMessage("outputTrue", true); 
-                      this.postMessage("outputFalse", false); 
+                      this._vf.inputTrue = true ; 
+                      this._vf.inputFalse= false ; 
+                      this.postMessage("inputTrue", true); 
+                      this.postMessage("inputFalse", false); 
                  }
                  else {
-                      this._vf.outputTrue = false ; 
-                      this._vf.outputFalse= true ; 
-                      this.postMessage("outputTrue", false); 
-                      this.postMessage("outputFalse", true); 
+                      this._vf.inputTrue = false ; 
+                      this._vf.inputFalse= true ; 
+                      this.postMessage("inputTrue", false); 
+                      this.postMessage("inputFalse", true); 
                       
                  }
             }
@@ -41,6 +41,7 @@ x3dom.registerNodeType(
     
     )//defineClass 
 );//registerNodeType
+
 // Implementation of a simple boolean or that accept 2 boolean value and returns and 'outputTrue' value. 
 
 
@@ -56,8 +57,8 @@ x3dom.registerNodeType(
          x3dom.nodeTypes.BooleanOr.superClass.call(this, ctx);
          this.addField_SFBool('fistValue', false);
          this.addField_SFBool('secondValue', false);
-         this.addField_SFBool('outputTrue', false);
-         this.addField_SFBool('outputFalse', true);
+         this.addField_SFBool('inputTrue', false);
+         this.addField_SFBool('inputFalse', true);
 
 
     }, 
@@ -65,16 +66,16 @@ x3dom.registerNodeType(
         fieldChanged : function(fieldName){
             if (fieldName === "firstValue" || fieldName === "secondValue" ){
                  if (this._vf.firstValue == true || this._vf.secondValue == true){
-                      this._vf.outputTrue = true ; 
-                      this._vf.outputFalse= false ; 
-                      this.postMessage("outputTrue", true); 
-                      this.postMessage("outputFalse", false); 
+                      this._vf.inputTrue = true ; 
+                      this._vf.inputFalse= false ; 
+                      this.postMessage("inputTrue", true); 
+                      this.postMessage("inputFalse", false); 
                  }
                  else {
-                      this._vf.outputTrue = false ; 
-                      this._vf.outputFalse= true ; 
-                      this.postMessage("outputTrue", false); 
-                      this.postMessage("outputFalse", true); 
+                      this._vf.inputTrue = false ; 
+                      this._vf.inputFalse= true ; 
+                      this.postMessage("inputTrue", false); 
+                      this.postMessage("inputFalse", true); 
                       
                  }
             }
@@ -84,6 +85,7 @@ x3dom.registerNodeType(
     
     )//defineClass 
 );//registerNodeType
+
 /**
  * This x3domNode inherit from TimeSensor beacuse when the field 'startTime'
  * is greater than the current time the field 'isActive' of the sensor comes true . 
@@ -439,6 +441,7 @@ x3dom.registerNodeType(
 )//defineClass 
 );//registerNodeType
 
+
 // ### DistanceSensor ### 
 x3dom.registerNodeType(
         "DistanceSensor", 
@@ -502,6 +505,7 @@ x3dom.registerNodeType(
 
 )//defineClass 
 );//registerNodeType
+
 /* Implementation in x3dom for the x3d BooleanFilter */ 
 
 x3dom.registerNodeType(
@@ -540,6 +544,7 @@ x3dom.registerNodeType(
     )
 );
 
+
 /* Implementation in x3dom for the x3d BooleanToggle */ 
 
 x3dom.registerNodeType(
@@ -573,6 +578,7 @@ x3dom.registerNodeType(
 
 )//defineClass
 );//registerNodeType
+
 /* Implementation in x3dom for the x3d BooleanSequencer */ 
 
 x3dom.registerNodeType(
@@ -615,6 +621,7 @@ x3dom.registerNodeType(
             }
 )//defineClass
 );//registerNodeType 
+
 /* Implementation in x3dom for the x3d BooleanSequencer */ 
 
 x3dom.registerNodeType(
@@ -658,6 +665,28 @@ x3dom.registerNodeType(
 
 )//defineClass
 );//registerNodeType 
+
+/* Implementation in x3dom of the x3d X3DTriggerNode */ 
+
+
+x3dom.registerNodeType(
+    "X3DTriggerNode", 
+    "Triggers", 
+    defineClass(x3dom.nodeTypes.X3DChildNode, 
+      /*
+       * X3DTriggerNode Constructor
+       */
+    function (ctx) {
+         x3dom.nodeTypes.X3DTriggerNode.superClass.call(this, ctx);
+         
+    }, 
+    {
+         
+    }
+    
+    )//defineClass 
+);//registerNodeType
+
 /* Implementation in x3dom of the x3d BooleanTrigger */
 
 x3dom.registerNodeType(
@@ -683,6 +712,7 @@ x3dom.registerNodeType(
             }
             )//defineClass
         );//registerNodeType 
+
 /*Implementation in x3dom of the x3d TimeTrigger */ 
 
 // ### TimeTrigger ### 
@@ -697,7 +727,7 @@ x3dom.registerNodeType(
     function (ctx) {
          x3dom.nodeTypes.TimeTrigger.superClass.call(this, ctx);
          this.addField_SFBool(ctx, 'set_boolean', false);
-         //this.addField_SFTime(ctx, 'triggerTime', 0);
+         this.addField_SFTime(ctx, 'triggerTime', 0);
          this.ctx = ctx ;
     }, 
     {
@@ -706,36 +736,9 @@ x3dom.registerNodeType(
             // when a set_boolean is received it modifies the triggerTime in the current time 
              if (fieldName == "set_boolean"){
                  var now = new Date().getTime() / 1000 ;
-                 if (this._vf['triggerTime']== undefined ){
-                  console.log(now);
-                  this.addField_SFTime(this.ctx, 'triggerTime', now);
-                 }
-                 else {
-                      this.postMessage("triggerTime", now);
-                 }
-
+                 this.postMessage("triggerTime", now);
              }
         }
-    }
-    
-    )//defineClass 
-);//registerNodeType
-/* Implementation in x3dom of the x3d X3DTriggerNode */ 
-
-
-x3dom.registerNodeType(
-    "X3DTriggerNode", 
-    "Triggers", 
-    defineClass(x3dom.nodeTypes.X3DChildNode, 
-      /*
-       * X3DTriggerNode Constructor
-       */
-    function (ctx) {
-         x3dom.nodeTypes.X3DTriggerNode.superClass.call(this, ctx);
-         
-    }, 
-    {
-         
     }
     
     )//defineClass 

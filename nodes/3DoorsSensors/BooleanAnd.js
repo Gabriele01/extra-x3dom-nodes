@@ -13,8 +13,8 @@ x3dom.registerNodeType(
          x3dom.nodeTypes.BooleanAnd.superClass.call(this, ctx);
          this.addField_SFBool('firstValue', false);
          this.addField_SFBool('secondValue', false);
-         this.addField_SFBool('outputTrue', false);
-         this.addField_SFBool('outputFalse', true);
+         this.addField_SFBool('inputTrue', false);
+         this.addField_SFBool('inputFalse', true);
 
 
     }, 
@@ -22,16 +22,16 @@ x3dom.registerNodeType(
         fieldChanged : function(fieldName){
             if (fieldName === "firstValue" || fieldName === "secondValue" ){
                  if (this._vf.firstValue == true && this._vf.secondValue == true){
-                      this._vf.outputTrue = true ; 
-                      this._vf.outputFalse= false ; 
-                      this.postMessage("outputTrue", true); 
-                      this.postMessage("outputFalse", false); 
+                      this._vf.inputTrue = true ; 
+                      this._vf.inputFalse= false ; 
+                      this.postMessage("inputTrue", true); 
+                      this.postMessage("inputFalse", false); 
                  }
                  else {
-                      this._vf.outputTrue = false ; 
-                      this._vf.outputFalse= true ; 
-                      this.postMessage("outputTrue", false); 
-                      this.postMessage("outputFalse", true); 
+                      this._vf.inputTrue = false ; 
+                      this._vf.inputFalse= true ; 
+                      this.postMessage("inputTrue", false); 
+                      this.postMessage("inputFalse", true); 
                       
                  }
             }

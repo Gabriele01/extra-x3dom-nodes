@@ -1,0 +1,19 @@
+{
+  "name": "extra-x3dom-nodes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "del": "^1.1.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp": "^3.8.11",
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gabriele Vassallo",
+  "license": "ISC"
+}
