@@ -39,11 +39,11 @@ def createHead(output) :
     link.setAttribute("rel", "stylesheet")
     head.appendChild(link)
     script = output.createElement("script")
-    script.setAttribute("src", "http://www.x3dom.org/x3dom/release/x3dom.js")
+    script.setAttribute("src", "http://www.x3dom.org/x3dom/release/x3dom.j://gist.githubusercontent.com/Gabriele01/7bbd9c07eab333b7d5c1/raw/1d636f22a8c6a0521f55a713d321ecac9806b140/x3dom.js")
     script.setAttribute("type", "text/javascript")
     head.appendChild(script)
     script = output.createElement("script")
-    script.setAttribute("src", "/Users/Ghost/Documents/SynArea/extra-x3dom-nodes/nodes/extra-x3dom-nodes.js")
+    script.setAttribute("src", "/Users/Ghost/Documents/SynArea/extra-x3dom-nodes/nodes/extra-x3dom-nodes.j://gist.githubusercontent.com/Gabriele01/e2c975c368f59fb76210/raw/0e9ef58964d1a82c2a598754c5f3e0199496c3a9/extra-x3dom-nodes.js")
     script.setAttribute("type", "text/javascript")
     head.appendChild(script)
     
